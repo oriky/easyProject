@@ -1,0 +1,23 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    url: 'jdbc:mysql://10.130.130.239:8901/SETTLE?useUnicode=true&characterEncoding=utf8'
+    username: settle
+    password: Dvp1803#
+    driver-class-name: 'com.mysql.jdbc.Driver'
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:com/zhousj/**/mapper/*.xml
+server:
+  port: 8888
+  tomcat:
+    max-threads: 1000
+    max-connections: 20000
+  servlet:
+    context-path: /openapi
+

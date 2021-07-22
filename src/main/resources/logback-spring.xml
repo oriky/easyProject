@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <!-- openapi日志路径 -->
+    <!--<property name="log.path.openapi" value="/Users/huangyifan/Documents/集团测试文件夹"/>-->
+    <property name="log.path.openapi" value="/data/bol/vnode/hla/log/metalog/openApi"/>
+    <!--<property name="log.path.openapi" value="/app/vnode/hla/log/metalog/openApi"/>-->
+
+    <!-- openapi日志名字 -->
+    <property name="logback.appname.openapi" value="openapi"/>
+    <!-- 权益卡日志路径 -->
+    <!--<property name="log.path.RightsOrder" value="/Users/huangyifan/Documents/集团测试文件夹/权益卡"/>-->
+    <property name="log.path.RightsOrder" value="/data/bol/vnode/hla/log/metalog/RightsOrder"/>
+    <!--<property name="log.path.RightsOrder" value="/app/vnode/hla/log/metalog/RightsOrder"/>-->
+    <!-- 权益卡日志名字 -->
+    <property name="logback.appname.RightsOrder" value="RightsOrder"/>
+    <!-- 电渠宽带日志路径 -->
+    <!--<property name="log.path.syncBroadBand" value="/Users/huangyifan/Documents/集团测试文件夹/电渠宽带"/>-->
+    <property name="log.path.syncBroadBand" value="/data/bol/vnode/hla/log/metalog/SyncBroadBand"/>
+    <!--<property name="log.path.syncBroadBand" value="/app/vnode/hla/log/metalog/SyncBroadBand"/>-->
+    <!-- 电渠宽带日志名字 -->
+    <property name="logback.appname.syncBroadBand" value="syncBroadBand"/>
+    <!-- 橙分期日志路径 -->
+    <!--<property name="log.path.orderSyncToBill" value="/Users/huangyifan/Documents/集团测试文件夹/橙分期"/>-->
+    <property name="log.path.orderSyncToBill" value="/data/bol/vnode/hla/log/metalog/OrderSyncToBill"/>
+    <!--<property name="log.path.orderSyncToBill" value="/app/vnode/hla/log/metalog/OrderSyncToBill"/>-->
+    <!-- 橙分期日志名字 -->
+    <property name="logback.appname.orderSyncToBill" value="orderSyncToBill"/>
+    <!-- 翼支付日志路径 -->
+    <!--<property name="log.path.esurfing" value="/Users/huangyifan/Documents/集团测试文件夹/翼支付"/>-->
+    <property name="log.path.esurfing" value="/data/bol/vnode/hla/log/metalog/esurfing"/>
+    <!--<property name="log.path.esurfing" value="/app/vnode/hla/log/metalog/esurfing"/>-->
+    <!-- 翼支付日志名字 -->
+    <property name="logback.appname.esurfing" value="esurfing"/>
+    <!-- 省份费用日志路径 -->
+    <!--<property name="log.path.creditProdFee" value="/Users/huangyifan/Documents/集团测试文件夹/省份费用查询"/>-->
+    <property name="log.path.creditProdFee" value="/data/bol/vnode/hla/log/metalog/creditProdFee"/>
+    <!--<property name="log.path.creditProdFee" value="/app/vnode/hla/log/metalog/creditProdFee"/>-->
+    <!-- 省份费用日志名字 -->
+    <property name="logback.appname.creditProdFee" value="creditProdFee"/>
+    <!-- 格式八一抽查日志路径 -->
+    <!--<property name="log.path.percentageBill" value="/Users/huangyifan/Documents/集团测试文件夹/格式八一抽查"/>-->
+    <!--<property name="log.path.percentageBill" value="/data/bol/vnode/hla/log/metalog/percentageBill"/>-->
+    <property name="log.path.percentageBill" value="/data/bol/vnode/hla/log/metalog/percentageBill"/>
+    <!-- 格式八一抽查日志名字 -->
+    <property name="logback.appname.percentageBill" value="percentageBill"/>
+
+    <property name="log.path.fiveresend" value="/data/bol/vnode/hla/log/metalog/fiveresend"/>
+    <!-- 格式八一抽查日志名字 -->
+    <property name="logback.appname.fiveresend" value="fiveresend"/>
+    <!-- 电渠宽带日志路径 -->
+    <!--<property name="log.path.broadBandOrder" value="D:/logs"/>-->
+    <property name="log.path.broadBandOrder" value="/data/bol/vnode/hla/log/metalog/BroadBandOrder"/>
+    <!-- 电渠宽带日志名字 -->
+    <property name="logback.appname.broadBandOrder" value="broadBandOrder"/>
+    <!-- plus会员日志路径 -->
+    <property name="log.path.prodAndOfferOrder" value="/data/bol/vnode/hla/log/metalog/ProdAndOfferOrder"/>
+    <!-- plus会员日志名字 -->
+    <property name="logback.appname.prodAndOfferOrder" value="prodAndOfferOrder"/>
+
+    <!--输出到控制台-->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- 级别过滤 -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+        </filter>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--openapi输出到文件-->
+    <appender name="openapi" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!--如果只是想要 Info 级别的日志，只是过滤 info 还是会输出 Error 日志，因为 Error 的级别高，
+        所以我们使用下面的策略，可以避免输出 Error 的日志-->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <!--&lt;!&ndash;过滤 Error&ndash;&gt;-->
+            <level>ERROR</level>
+            <!--&lt;!&ndash;匹配到就禁止&ndash;&gt;-->
+            <onMatch>DENY</onMatch>
+            <!--&lt;!&ndash;没有匹配到就允许&ndash;&gt;-->
+            <onMismatch>ACCEPT</onMismatch>
+        </filter>
+        <file>${log.path.openapi}/${logback.appname.openapi}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path.openapi}/spring-boot-logging.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- 日志保存周期 -->
+            <maxHistory>90</maxHistory>
+            <!-- 总大小 -->
+            <totalSizeCap>3GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--权益卡输出到文件-->
+    <appender name="orderSyncfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path.RightsOrder}/${logback.appname.RightsOrder}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path.RightsOrder}/spring-boot-logging.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- 日志保存周期 -->
+            <maxHistory>90</maxHistory>
+            <!-- 总大小 -->
+            <totalSizeCap>3GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <!--电渠宽带输出到文件-->
+    <appender name="syncBroadBandfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path.syncBroadBand}/${logback.appname.syncBroadBand}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path.syncBroadBand}/spring-boot-logging.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- 日志保存周期 -->
+            <maxHistory>90</maxHistory>
+            <!-- 总大小 -->
+            <totalSizeCap>3GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <!--橙分期输出到文件-->
+    <appender name="orderSyncToBillfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path.orderSyncToBill}/${logback.appname.orderSyncToBill}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path.orderSyncToBill}/spring-boot-logging.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- 日志保存周期 -->
+            <maxHistory>90</maxHistory>
+            <!-- 总大小 -->
+            <totalSizeCap>3GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <!--翼支付输出到文件-->
+    <appender name="esurfing" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path.esurfing}/${logback.appname.esurfing}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path.esurfing}/spring-boot-logging.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- 日志保存周期 -->
+            <maxHistory>90</maxHistory>
+            <!-- 总大小 -->
+            <totalSizeCap>3GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <!--省份费用输出到文件-->
+    <appender name="creditProdFee" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path.creditProdFee}/${logback.appname.creditProdFee}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path.creditProdFee}/spring-boot-logging.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- 日志保存周期 -->
+            <maxHistory>90</maxHistory>
+            <!-- 总大小 -->
+            <totalSizeCap>3GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <!--格式八一抽查输出到文件-->
+    <appender name="percentageBill" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path.percentageBill}/${logback.appname.percentageBill}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path.percentageBill}/spring-boot-logging.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- 日志保存周期 -->
+            <maxHistory>90</maxHistory>
+            <!-- 总大小 -->
+            <totalSizeCap>3GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <!--电渠宽带甩单输出到文件-->
+    <appender name="broadBandOrderfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path.broadBandOrder}/${logback.appname.broadBandOrder}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path.broadBandOrder}/spring-boot-logging.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- 日志保存周期 -->
+            <maxHistory>90</maxHistory>
+            <!-- 总大小 -->
+            <totalSizeCap>3GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--plus会员输出到文件-->
+    <appender name="prodAndOfferOrderfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path.prodAndOfferOrder}/${logback.appname.prodAndOfferOrder}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path.prodAndOfferOrder}/spring-boot-logging.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- 日志保存周期 -->
+            <maxHistory>90</maxHistory>
+            <!-- 总大小 -->
+            <totalSizeCap>3GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="console"/>
+        <appender-ref ref="openapi"/>
+        <!--<appender-ref ref="orderSyncfile"/>-->
+        <!--<appender-ref ref="syncBroadBandfile"/>-->
+    </root>
+
+    <logger name="orderSync" >
+        <appender-ref ref="orderSyncfile" />
+    </logger>
+
+    <logger name="syncBroadBand" >
+        <appender-ref ref="syncBroadBandfile" />
+    </logger>
+    <logger name="orderSyncToBill" >
+        <appender-ref ref="orderSyncToBillfile" />
+    </logger>
+    <logger name="esurfing" >
+        <appender-ref ref="esurfing" />
+    </logger>
+    <logger name="creditProdFee" >
+        <appender-ref ref="creditProdFee" />
+    </logger>
+    <logger name="percentageBill" >
+        <appender-ref ref="percentageBill" />
+    </logger>
+    <logger name="broadBandOrder" >
+        <appender-ref ref="broadBandOrderfile" />
+    </logger>
+    <logger name="prodAndOfferOrder" >
+        <appender-ref ref="prodAndOfferOrderfile" />
+    </logger>
+    <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="trace" />
+</configuration>
