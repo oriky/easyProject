@@ -2,9 +2,6 @@ spring:
   main:
     allow-bean-definition-overriding: true
   datasource:
-    url: 'jdbc:mysql://10.130.130.239:8901/SETTLE?useUnicode=true&characterEncoding=utf8'
-    username: settle
-    password: Dvp1803#
     driver-class-name: 'com.mysql.jdbc.Driver'
   jpa:
     hibernate:
